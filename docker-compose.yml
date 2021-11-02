@@ -2,14 +2,17 @@
 version: '3'
 services:
   frontend:
+    restart: always 
     image: "gtertrais/front:latest"
     networks:
       - sub-etha
   backend:
+    restart: always 
     image: "gtertrais/server:latest"
     networks:
       - sub-etha
   proxy:
+    restart: always 
     image: "gtertrais/proxy:latest"
     networks:
       - sub-etha
