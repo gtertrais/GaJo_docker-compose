@@ -2,15 +2,15 @@
 version: '3'
 services:
   frontend:
-    image: "gtertrais/front"
+    image: "gtertrais/front:latest"
     networks:
       - sub-etha
   backend:
-    image: "gtertrais/server"
+    image: "gtertrais/server:latest"
     networks:
       - sub-etha
   proxy:
-    image: "gtertrais/proxy"
+    image: "gtertrais/proxy:latest"
     networks:
       - sub-etha
     ports:
