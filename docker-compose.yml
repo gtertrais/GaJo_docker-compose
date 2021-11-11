@@ -43,15 +43,15 @@ services:
       - "80:80"
       - "443:443"
   adminer:
-      image: adminer:latest
-      restart: unless-stopped
-      ports:
-        - 8000:8080
-      depends_on:
-        - mysql_db
-      environment:
-        ADMINER_DEFAULT_SERVER: mysql_db
-      networks:
-      - sub-etha
+    image: adminer:latest
+    restart: unless-stopped
+    ports:
+      - 8000:8080
+    depends_on:
+      - mysql_db
+    environment:
+      ADMINER_DEFAULT_SERVER: mysql_db
+    networks:
+     - sub-etha
 networks:
   sub-etha:
