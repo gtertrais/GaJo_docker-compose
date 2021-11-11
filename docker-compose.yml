@@ -1,7 +1,7 @@
 # ./docker-compose/docker-compose.yml
 version: '3'
 
-x-common-variables: &common-variables
+x-common-variables:
   MYSQL_DATABASE: gajo
   MYSQL_USER: root
   MYSQL_PASSWORD: root
