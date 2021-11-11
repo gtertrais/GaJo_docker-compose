@@ -39,7 +39,7 @@ services:
   proxy:
     depends_on:
       - backend
-      - front
+      - frontend
     restart: always 
     image: "gtertrais/proxy:latest"
     networks:
