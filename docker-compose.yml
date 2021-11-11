@@ -8,7 +8,7 @@ services:
     cap_add:
       - SYS_NICE
     volumes:
-      - "./user.sql:/docker-entrypoint-initdb.d/setup.sql"
+      - "./setup.sql:/docker-entrypoint-initdb.d/setup.sql"
     ports:
       - "9906:3306"
     environment:
@@ -17,6 +17,8 @@ services:
       MYSQL_PASSWORD: root
       MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
       MYSQL_HOST: localhost
+    networks:
+      - sub-etha
   frontend:
     restart: always 
     image: "gtertrais/front:latest"
@@ -49,5 +51,7 @@ services:
         - mysql_db
       environment:
         ADMINER_DEFAULT_SERVER: mysql_db
+      networks:
+      - sub-etha
 networks:
   sub-etha:
