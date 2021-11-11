@@ -27,7 +27,6 @@ services:
   backend:
     restart: always 
     image: "gtertrais/server:latest"
-    MYSQL_HOST_IP: mysql_db
     depends_on:
       - mysql_db
     environment:
