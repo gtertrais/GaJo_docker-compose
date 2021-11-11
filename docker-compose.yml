@@ -9,6 +9,8 @@ services:
       - SYS_NICE
     volumes:
       - "./setup.sql:/docker-entrypoint-initdb.d/setup.sql"
+    ports:
+      - "9906:3306"
     environment:
       MYSQL_DATABASE: gajo
       MYSQL_USER: root
@@ -45,6 +47,8 @@ services:
   adminer:
     image: adminer:latest
     restart: unless-stopped
+    ports:
+      - 8000:8080
     depends_on:
       - mysql_db
     environment:
