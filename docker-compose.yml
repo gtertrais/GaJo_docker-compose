@@ -42,8 +42,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-      - "8000:8080"
-      - "9906:3306"
   adminer:
     image: adminer:latest
     restart: unless-stopped
