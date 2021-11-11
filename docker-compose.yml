@@ -37,6 +37,9 @@ services:
     networks:
       - sub-etha
   proxy:
+    depends_on:
+      - backend
+      - front
     restart: always 
     image: "gtertrais/proxy:latest"
     networks:
