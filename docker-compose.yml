@@ -34,11 +34,7 @@ services:
       MYSQL_DATABASE: gajo
       MYSQL_USER: root
       MYSQL_PASSWORD: root
-      environment:
-        MYSQL_DATABASE: gajo
-        MYSQL_USER: root
-        MYSQL_PASSWORD: root
-        MYSQL_HOST_IP: mysql_db
+      MYSQL_HOST_IP: mysql_db
     networks:
       - sub-etha
   proxy:
