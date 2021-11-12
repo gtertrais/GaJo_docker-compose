@@ -1,38 +1,23 @@
 # ./docker-compose/docker-compose.yml
 version: '3'
 services:
-  mysql_db:
-    image: mysql
-    restart: always
-    cap_add:
-      - SYS_NICE
-    volumes:
-      - "./setup.sql:/docker-entrypoint-initdb.d/setup.sql"
-    environment:
-      MYSQL_DATABASE: users
-      MYSQL_USER: MYSQL_USER
-      MYSQL_PASSWORD: MYSQL_PASSWORD
-      MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
-      MYSQL_HOST: localhost
   frontend:
     restart: always 
     image: "gtertrais/front:latest"
+    networks:
+      - sub-etha
   backend:
-    depends_on:
-      - mysql_db
     restart: always 
     image: "gtertrais/server:latest"
-    environment:
-      MYSQL_DATABASE: users
-      MYSQL_USER: MYSQL_USER
-      MYSQL_PASSWORD: MYSQL_PASSWORD
-      MYSQL_HOST_IP: mysql_db
+    networks:
+      - sub-etha
   proxy:
-    depends_on:
-      - frontend
-      - backend
     restart: always 
     image: "gtertrais/proxy:latest"
+    networks:
+      - sub-etha
     ports:
       - "80:80"
       - "443:443"
+networks:
+  sub-etha:
