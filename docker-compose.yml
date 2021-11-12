@@ -3,13 +3,13 @@ version: '3'
 services:
   frontend:
     restart: always 
-    image: "gtertrais/front:latest"
+    image: "gtertrais/front:dev"
   backend:
     restart: always 
-    image: "gtertrais/server:latest"
+    image: "gtertrais/server:dev"
   proxy:
     restart: always 
-    image: "gtertrais/proxy:latest"
+    image: "gtertrais/proxy:dev"
     ports:
       - "80:80"
       - "443:443"
