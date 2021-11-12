@@ -1,15 +1,49 @@
 # ./docker-compose/docker-compose.yml
 version: '3'
 services:
+  mysql_db:
+    image: mysql
+    restart: always
+    cap_add:
+      - SYS_NICE
+    volumes:
+      - "./setup.sql:/docker-entrypoint-initdb.d/setup.sql"
+    ports:
+      - "9906:3306"
+    environment:
+      MYSQL_DATABASE: gajo
+      MYSQL_USER: MYSQL_USER
+      MYSQL_PASSWORD: MYSQL_PASSWORD
+      MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
+      MYSQL_HOST: localhost
   frontend:
     restart: always 
-    image: "gtertrais/front:dev"
+    image: "gtertrais/front:latest"
   backend:
+    depends_on:
+      - mysql_db
     restart: always 
-    image: "gtertrais/server:dev"
+    image: "gtertrais/server:latest"
+    environment:
+      MYSQL_DATABASE: gajo
+      MYSQL_USER: MYSQL_USER
+      MYSQL_PASSWORD: MYSQL_PASSWORD
+      MYSQL_HOST_IP: mysql_db
   proxy:
+    depends_on:
+      - frontend
+      - backend
     restart: always 
-    image: "gtertrais/proxy:dev"
+    image: "gtertrais/proxy:latest"
     ports:
       - "80:80"
       - "443:443"
+  adminer:
+      image: adminer:latest
+      restart: unless-stopped
+      ports:
+        - 8000:8080
+      depends_on:
+        - mysql_db
+      environment:
+        ADMINER_DEFAULT_SERVER: mysql_db
