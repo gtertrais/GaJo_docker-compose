@@ -18,32 +18,20 @@ services:
       MYSQL_HOST: localhost
   frontend:
     restart: always 
-    image: "gtertrais/front:latest"
+    image: "gtertrais/front:dev"
   backend:
     depends_on:
       - mysql_db
     restart: always 
-    image: "gtertrais/server:latest"
+    image: "gtertrais/server:dev"
     environment:
       MYSQL_DATABASE: gajo
       MYSQL_USER: MYSQL_USER
       MYSQL_PASSWORD: MYSQL_PASSWORD
       MYSQL_HOST_IP: mysql_db
   proxy:
-    depends_on:
-      - frontend
-      - backend
     restart: always 
-    image: "gtertrais/proxy:latest"
+    image: "gtertrais/proxy:dev"
     ports:
       - "80:80"
       - "443:443"
-  adminer:
-      image: adminer:latest
-      restart: unless-stopped
-      ports:
-        - 8000:8080
-      depends_on:
-        - mysql_db
-      environment:
-        ADMINER_DEFAULT_SERVER: mysql_db
