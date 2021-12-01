@@ -7,9 +7,6 @@ services:
   backend:
     restart: always 
     image: "gtertrais/server:pre"
-  admin:
-    restart: always 
-    image: "gtertrais/admin:pre"
   proxy:
     restart: always 
     image: "gtertrais/proxy:pre"
