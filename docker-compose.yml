@@ -3,16 +3,16 @@ version: '3'
 services:
   frontend:
     restart: always 
-    image: "gtertrais/front:pre"
+    image: "gtertrais/front"
   backend:
     restart: always 
-    image: "gtertrais/server:pre"
+    image: "gtertrais/server"
   admin:
     restart: always 
-    image: "gtertrais/admin:pre"
+    image: "gtertrais/admin"
   proxy:
     restart: always 
-    image: "gtertrais/proxy:pre"
+    image: "gtertrais/proxy"
     ports:
       - "80:80"
       - "443:443"
